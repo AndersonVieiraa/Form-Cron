@@ -1,0 +1,95 @@
+﻿
+<?php
+//include "permissaoN2.php";
+header('Content-type: text/html; charset=utf8');
+include "permissao.php";
+include "config.php";
+
+$dir = "../arquivos/"; 
+// recebendo o arquivo multipart 
+//$file = $_FILES["arquivo"]; 
+// Move o arquivo da pasta temporaria de upload para a pasta de destino 
+//if (move_uploaded_file($file["tmp_name"], "$dir/".$file["name"])) { 
+    //echo "Arquivo anexado com sucesso!"; 
+//} 
+//else { 
+    //echo "Erro, o arquivo n&atilde;o pode ser enviado."; 
+//} 
+
+$id = intval($_REQUEST['id_recebidos']);
+$acessante = htmlspecialchars($_REQUEST['acessante']);
+//$nome = $file["name"];
+$ses = htmlspecialchars($_REQUEST['ses']);
+$classificacao = htmlspecialchars($_REQUEST['classificacao']);
+$observacao = htmlspecialchars($_REQUEST['observacao']);
+
+
+
+
+if (!isset($_SESSION)) session_start();
+$emitenteusuario= $_SESSION['UsuarioNome'];
+$areaemitente= $_SESSION['AreaEmitente'];
+date_default_timezone_set('America/Fortaleza'); 
+$data= date('d/m/Y');
+$hora= date('H:i');
+$ano=date('Y'); 
+//$link= "/cron/PHP/Form/arquivos/".$file["name"]."";
+
+include 'conn.php';
+
+$sql = "update RECEBIDOS set acessante='$acessante',ses='$ses',classificacao='$classificacao',observacao='$observacao',emitenteusuario='$emitenteusuario',data='$data',hora='$hora'  where id_recebidos=$id";
+//senha=SHA1('$senha')
+$result = @mysql_query($sql);
+if ($result){
+	echo json_encode(array(
+		'acessante' => $acessante,
+		'nome' => $nome,
+		'ses' => $ses,
+		'classificacao' => $classificacao,
+		'observacao' => $observacao,
+		'link' => $link,
+		'emitenteusuario' => $emitenteusuario,
+		'data' => $data,
+		'hora' => $hora
+	));
+	
+} else {
+	echo json_encode(array('errorMsg'=>'Não foi possível editar AI.<br> * Falha na conexão <br> * Procure o Administrador'));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//$sql = ("UPDATE agenda SET
+//nome='".$_POST['nome']."',
+//telefone='".$_POST['telefone']."',
+//comercial='".$_POST['comercial']."',
+//celular='".$_POST['celular']."',
+//celular2='".$_POST['celular2']."',
+//email='".$_POST['email']."',
+//site='".$_POST['site']."',
+//observacao='".$_POST['observacao']."'
+
+//where id_contato=" intval($_REQUEST['id']));
+
+//$resultado = mysql_query($sql)
+//or die (mysql_error());
+
+//if ($resultado == true) {
+//	echo "Contato alterado COM SUCESSO!";
+    //echo "<script>window.location.href='index.php'</script>";
+//	}
+//else {
+//    echo "&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; Não foi possivel alterar o registro ".mysql_error();
+	//echo "<script>window.location.href='index.php'</script>";
+//}
+?>
