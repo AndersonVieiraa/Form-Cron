@@ -1,0 +1,43 @@
+/*Configurações Padrões*/
+ 
+ul.menu2, .menu2 li, .menu2 a{ margin:0px; padding:10; list-style:none; text-decoration:none;}
+
+ul.menu2 ul{ position:absolute; margin:0px; margin-top: 0px; display:none; box-shadow:3px 3px 2px #333;}
+
+/* Configurações nivel 1*/
+
+ul.menu2{ float:left; font-family:Verdana, Geneva, sans-serif; font-size:15px; border-radius:10px; padding:0 5px;}
+.menu2 li{ float:left; width:auto; position:relative;}
+.menu2 li a{ display:block; padding:0 25px; line-height:45px; height:45px; float:left; transition:all 0.1s linear; }
+
+/* Configurações nivel 2*/
+.menu2 li:hover > ul.submenu2-1{ display:block; top:45px; left:100; padding:5px; width:200px; border-radius:0 5px 5px 5px;   }
+.menu2 ul.submenu2-1 a{  width:195px; padding:0 20px; border-radius:5px;  }
+
+/* Configurações nivel 2*/
+.menu2 li:hover > ul.submenu2-2{ display:block; top:0; left:195px; padding:5px; width:220px;  border-radius: 0 5px 5px 5px; }
+.menu2 ul.submenu2-2 a{  width:200px; padding:0 20px; border-radius:5px; }
+
+/* Configurações nivel 3*/
+.menu2 li:hover > ul.submenu2-3{ display:block; top:0; left:195px; padding:5px; width:260px;  border-radius: 0 5px 5px 5px; }
+.menu2 ul.submenu2-3 a{  width:250px; padding:0 20px; border-radius:5px; }
+
+/*Configurações de cores*/
+/*nivel 1*/
+.menu2{background:#CCC; }.menu2 a{ color:#000;}
+.menu2 li:hover > a{ background:#999;  color:#fff;}
+
+/*nivel 2*/
+.submenu2-1{ background:#999;}
+.submenu2-1 a{color:#fff;}
+.submenu2-1 li:hover > a{ background:#666; }
+
+/*nivel 3*/
+.submenu2-2{ background:#666;}
+.submenu2-2 a{color:#fff;}
+.submenu2-2 li:hover > a{ background:#333; }
+
+/*nivel 3*/
+.submenu2-3{ background:#333;}
+.submenu2-3 a{color:#fff;}
+.submenu2-3 li:hover > a{ background:#000; }
