@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Form-CRON</title>
+
+<link rel="stylesheet" type="text/css" href="../easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../easyui/demo/demo.css">
+<script type="text/javascript" src="../easyui/jquery.min.js"></script>
+<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../easyui/datagrid-detailview.js"></script>
+<link rel="icon" type="imagem/ico" href="img/favicon.png" />
+</head>
+
+<div style="position:relative; z-index:2; ">
+<?php 
+include "Menu2/index_MO.html"; ?>	
+</div>
+
+<!--Início loading-->	
+<div id="loading" style="display: block; width:100%;height:100%; padding-top:0px; background: white; margin-top:0px; margin-left:0px; position:absolute; z-index:2;">
+	<table border="0" style="width:100%;height:90%; table-layout:fixed; align: center;">
+		<tr><td align="center" valign="center" style="">
+		<img src="http:img/loading02.gif" style="width:250px;height:200px;" /><br><font size="3" color='grey'>Processando...</font>
+		</td></tr> 
+	</table>
+</div>
+<script>
+var i = setInterval(function () {
+    clearInterval(i);
+    // O código desejado é apenas isto:
+    document.getElementById("loading").style.display = "none";
+	document.getElementById("conteudo").style.display = "inline";
+}, 1000);
+</script>
+<!--Fim loading-->
+
+<body style="position:fixed; width:100%; height:100%; padding:0px;background:rgba(245,245,245);">
+<div data-options="tools:'#tab-tools'" style="width:100%; height:100%; padding:0px">
+
+	<!--<iframe scrolling="yes" frameborder="0"  src="Norte/sub-tab-acessantes.php" style="width:100%;height:100%;"></iframe>-->
+	
+	<div align="center" style="width: 100%; height: 92%;">
+				<table id="dg3" border="0" style="width:100%;height:100%"
+						url="datagrid8_getdata_MO.php<?php //echo $inicial; ?>"
+						rownumbers="true" pagination="true" sortName="id" sortOrder="desc"
+						title=""
+						singleSelect="true" fitColumns="true" toolbar="#toolbar1">
+					<thead>
+						<tr>
+							<th colspan="8" align="center" width="13"><b>MO - Mensagens Operativas</b></th>
+						</tr>
+					</thead>
+					<thead>
+						<tr>
+							<th field="numero" align="center" width="13">Número</th>
+							<th field="ano" align="center" width="10">Ano</th>
+							<th field="destinatario" width="25">Destinatário</th>
+							<th field="assuntotitulo" align="left" width="80">Assunto</th>
+							<th field="emitenteusuario" align="left" width="30">Criado Por</th>
+							<th field="data" align="left" width="25">Data</th>
+							<th field="hora" align="left" width="20">Hora</th>
+						</tr>
+					</thead>
+				</table>
+				<div id="toolbar1" style="padding:10px;">
+				
+					<a href="javascript:void(0)" class="easyui-linkbutton" onclick="imprimir()"plain="false"><img style="vertical-align:middle;margin-top:-3px; width:20px;height:23px;" src="img/pdf.png"> Visualizar PDF</a>
+					<br><small><small><br></small></small>
+	
+					<input id="numero" type="search" placeholder="  Número" style="width:10%;line-height:26px;border:1px solid #aaa; border-radius:5px;">
+					<input id="ano" type="search" placeholder="  Ano" style="width:10%; line-height:26px;border:1px solid #aaa; border-radius:5px;">
+					<input id="destinatario" type="search" placeholder=" Destinatário" style="width:10%;line-height:26px;border:1px solid #aaa; border-radius:5px;">
+					<input id="assuntotitulo"  type="search" placeholder=" Assunto"style="width:10%;line-height:26px;border:1px solid #aaa; border-radius:5px;">
+					<input id="emitenteusuario"  type="search" placeholder=" Criado Por"style="width:10%;line-height:26px;border:1px solid #aaa; border-radius:5px;">
+					<input id="data"  type="search" placeholder=" Data"style="width:10%;line-height:26px;border:1px solid #aaa; border-radius:5px;">
+					<a href="javascript:void(0)" onclick="doSearch()" class="easyui-linkbutton" iconCls="icon-search" plain="false">Buscar</a>
+		
+				</div>
+				<script type="text/javascript">
+						function imprimir(){
+							row = $('#dg3').datagrid('getSelected');
+							window.open("/EDT/gerarpdf/index.php?id_mo="+row.id_mo);
+			
+							}
+				
+				
+				jQuery('#id_mo').keypress(function(event){
+
+					var keycode = (event.keyCode ? event.keyCode : event.which);
+					if(keycode == '13'){
+						$('#dg3').datagrid('load',{
+							id_mo: $('#id_mo').val()
+						});
+				}
+				});
+				
+				jQuery('#numero').keypress(function(event){
+
+					var keycode = (event.keyCode ? event.keyCode : event.which);
+					if(keycode == '13'){
+						$('#dg3').datagrid('load',{
+							numero: $('#numero').val()
+						});
+				}
+				});
+				
+				jQuery('#ano').keypress(function(event){
+
+					var keycode = (event.keyCode ? event.keyCode : event.which);
+					if(keycode == '13'){
+						$('#dg3').datagrid('load',{
+							ano: $('#ano').val()
+						});
+				}
+				});
+				
+				
+				jQuery('#destinatario').keypress(function(event){
+
+					var keycode = (event.keyCode ? event.keyCode : event.which);
+					if(keycode == '13'){
+						$('#dg3').datagrid('load',{
+							destinatario: $('#destinatario').val()
+						});
+				}
+				});
+
+				jQuery('#assuntotitulo').keypress(function(event){
+
+					var keycode = (event.keyCode ? event.keyCode : event.which);
+					if(keycode == '13'){
+						$('#dg3').datagrid('load',{
+							assuntotitulo: $('#assuntotitulo').val()
+						});
+				}
+				});
+				
+
+				jQuery('#emitenteusuario').keypress(function(event){
+
+					var keycode = (event.keyCode ? event.keyCode : event.which);
+					if(keycode == '13'){
+						$('#dg3').datagrid('load',{
+							emitenteusuario: $('#emitenteusuario').val()
+						});
+				}
+				});
+				
+				jQuery('#data').keypress(function(event){
+
+					var keycode = (event.keyCode ? event.keyCode : event.which);
+					if(keycode == '13'){
+						$('#dg3').datagrid('load',{
+							data: $('#data').val()
+						});
+				}
+				});
+				
+				jQuery('#hora').keypress(function(event){
+
+					var keycode = (event.keyCode ? event.keyCode : event.which);
+					if(keycode == '13'){
+						$('#dg3').datagrid('load',{
+							data: $('#hora').val()
+						});
+				}
+				});
+
+				function doSearch(){
+					$('#dg3').datagrid('load',{
+						id_mo: $('#id_mo').val(),
+						numero: $('#numero').val(),
+						ano: $('#ano').val(),
+						destinatario: $('#destinatario').val(),
+						assuntotitulo: $('#assuntotitulo').val(),
+						emitenteusuario: $('#emitenteusuario').val(),
+						data: $('#data').val()
+					});
+				}
+	
+				
+					$(function(){
+						$('#dg3').datagrid({
+							view: detailview,
+							detailFormatter:function(index,row){
+								return '<div id="ddv-' + index + '" style="padding:5px 0"></div>';
+							},
+							onExpandRow: function(index,row){
+								$('#ddv-'+index).panel({
+									border:false,
+									cache:false,
+									href:'datagrid21_getdetail_MO.php?itemid='+row.id_mo,
+									onLoad:function(){
+										$('#dg3').datagrid('fixDetailRowHeight',index);
+									}
+								});
+								$('#dg3').datagrid('fixDetailRowHeight',index);
+							}
+						});
+					});
+					
+				</script>
+			</div>	
+
+</div>
+ 
+
+
+
+
+<!--Diálogo de Login-->
+	<div id="dlg" class="easyui-dialog" title="Dados de login" data-options="iconCls:'icon-lock'" style="width:470px;height:400px;padding:20px" closed="true">
+		<form action="login-MO.php" method="post">
+			<div class="easyui-panel" style="width:400px;padding:30px 30px">
+			
+			<div style="padding:2px;color:grey;">Login:</div>
+			<div style="margin-bottom:20px;color:grey;">
+				<input prompt="Username" name="usuario" type="text" iconWidth="28" style="width:100%;height:34px;padding:10px;" data-options="prompt:'Username',iconCls:'icon-man',iconWidth:38">
+			</div>
+			
+			<div style="padding:2px; color:grey;">Senha:</div>
+			<div style="margin-bottom:20px;color:grey;">
+				<input prompt="Password" name="senha" type="password" iconWidth="28" style="width:100%;height:34px;padding:10px"  >
+			</div>
+			<div style="margin-bottom:20px; padding:2px">
+			<input type="submit" class="easyui-linkbutton" value="Login" style="padding:5px 0px;width:100%;"/>
+			</div>
+			</div>
+			
+		</form>
+		<br><div style="color:grey">Senha inicial = chesf</div>
+	</div>
+<script>
+var url;
+	function login(){
+			$('#dlg').dialog('open').dialog('setTitle','&nbsp Dados de Login');
+	}
+</script>
+<!--Fim diálogo de Login-->	
+</body>
+</html>
+<?php include "DLG_listadetransmissao.php";?>

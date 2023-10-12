@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FormCRON</title>
+
+<link rel="stylesheet" type="text/css" href="../easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../easyui/demo/demo.css">
+<script type="text/javascript" src="../easyui/jquery.min.js"></script>
+<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../easyui/datagrid-detailview.js"></script>
+<link href="anderson4.css" rel="stylesheet" type="text/css" />
+<link rel="icon" type="imagem/ico" href="img/favicon.png" />
+
+</head>
+<div style=" z-index:2; ">
+<?php 
+include "permissaoN2.php";
+include "Menu/index_adm.html"; ?>	
+</div>	
+
+<!--Início loading-->	
+<div id="loading" style="display: block; width:100%;height:100%; padding-top:0px; background: white; margin-top:0px; margin-left:0px; position:absolute; z-index:2;">
+	<table border="0" style="width:100%;height:90%; table-layout:fixed; align: center;">
+		<tr><td align="center" valign="center" style="">
+		<img src="http:img/loading02.gif" style="width:250px;height:200px;" /><br><font size="3" color='grey'>Processando...</font>
+		</td></tr> 
+	</table>
+</div>
+<script>
+var i = setInterval(function () {
+    clearInterval(i);
+    // O código desejado é apenas isto:
+    document.getElementById("loading").style.display = "none";
+	document.getElementById("conteudo").style.display = "inline";
+}, 1100);
+</script>
+<!--Fim loading-->	
+
+
+<body style="position:fixed; width:100%; height:100%; padding:0px;">
+
+<div class="container">
+
+<table align="center" border="0" cellpadding="0" style="border-spacing:00px; border: 1px solid #CCCCCC; padding:10px; border-radius:20px; background-color:"><tr><td>
+<table align="center" border="0" cellpadding="0" style="border-spacing:00px; border: 1px solid #CCCCCC; padding:10px; border-radius:20px; background-color:white"><tr><td>
+
+<div style="align:center; text-align:center; padding-top:0px; font-family: Sans-Serif, Arial, Verdana, Tahoma; color: #555555; font-size: 40px;"><!--text-shadow: 0.1em 0.1em 0.1em black-->
+
+	<table align="" border="0" cellpadding="0" style="border-spacing:25px; padding:00px;">
+	<tr>
+	<td><img style="width:420px; height:325px;" src="img/logo0.png" alt=""/></td>
+	
+	<td>
+	<table>
+		<tr>
+		<td style="border-right: 1px solid #888888; height:180px;"><b></b></td>
+		
+	</table>	
+	</td>
+	
+	
+	<td>
+	<table border="1" style="border-collapse:collapse;">
+		<tr>
+		<td align="right"><img src="img/caneta2.png" style="whidth:40px;height:40px;"></td>
+		</tr>
+		<tr>
+		<td align="left" style="font-size: 63px; "><b>FORM-CRON</b></td>
+		</tr>
+		<tr>
+		<td align="left" style="font-size: 25px;"> Gestão de Formulários de <br>Acessantes do CRON<br><small><small><small><br><br><br></small></small></small></td>
+		</tr>
+	</table>	
+	</td>
+	</tr>
+
+	</table>
+	</div> 
+
+</td></tr></table>
+</td></tr></table>
+</div>
+
+<style>
+.transp2 img {
+	filter: brightness(100%);	
+}
+.transp2 img:hover {
+	filter: drop-shadow(3px 3px 8px grey);
+}
+</style>
+
+
+
+
+</div>
+
+
+
+
+</body>
+
+</html>
+
+	<iframe src="atualiza_session.php" width="0" height="0"></iframe>
+
+
+<?php 
+include "VerificaAnoNumeracao.php";
+include "DLG_listadetransmissao.php";
+?>
+
+<!-- Início Sistema de logout por tempo de uso-->
+<script>
+	
+setTimeout(function() {
+		window.location.href="logout2.php"
+}, 1800 * 1000); //60 minutos 60000= 1 minuto
+
+</script>
+<!-- Fim Sistema de logout por tempo de uso-->
+
+
+ <style>
+.container {
+width: 100vw;
+height: 90vh;
+**background: #6C7A89;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center
+}
+.box {
+width: 800px;
+height: 400px;
+background: #fff;
+}
+body {
+margin: 0px;
+}
+
+.transp img {
+	filter: brightness(100%);	
+}
+.transp img:hover {
+	filter: brightness(105%);
+}
+</style>

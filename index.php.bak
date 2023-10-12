@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Form CRON</title>
+
+<link rel="stylesheet" type="text/css" href="../easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../easyui/demo/demo.css">
+<script type="text/javascript" src="../easyui/jquery.min.js"></script>
+<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../easyui/datagrid-detailview.js"></script>
+<link href="anderson4.css" rel="stylesheet" type="text/css" />
+<link rel="icon" type="imagem/ico" href="img/favicon.png" />
+
+</head>
+
+<div style="position:relative; z-index:2; ">
+<?php 
+include "Menu2/index.html"; ?>	
+</div>
+
+<!--Fim diálogo de Login-->	
+
+<!--Início loading-->	
+<div id="loading" style="display: block; width:100%;height:100%; padding-top:0px; background: white; margin-top:0px; margin-left:0px; position:absolute; z-index:2;">
+	<table border="0" style="width:100%;height:90%; table-layout:fixed; align: center;">
+		<tr><td align="center" valign="center" style="">
+		<img src="http:img/loading02.gif" style="width:250px;height:200px;" />
+		</td></tr> 
+	</table>
+</div>
+<script>
+var i = setInterval(function () {
+    clearInterval(i);
+    // O código desejado é apenas isto:
+    document.getElementById("loading").style.display = "none";
+	document.getElementById("conteudo").style.display = "inline";
+}, 1000);
+</script>
+<!--Fim loading-->	
+
+<body style="position:fixed; width:100%; height:100%; padding:0px;">
+
+<div class="container">
+
+<table align="center" border="0" cellpadding="0" style="border-spacing:00px; border: 1px solid #CCCCCC; padding:10px; border-radius:20px; background-color:"><tr><td>
+<table align="center" border="0" cellpadding="0" style="border-spacing:00px; border: 1px solid #CCCCCC; padding:10px; border-radius:20px; background-color:white"><tr><td>
+
+
+	<div style="align:center; text-align:center; padding-top:0px; font-family: Sans-Serif, Arial, Verdana, Tahoma; color: #555555; font-size: 40px;"><!--text-shadow: 0.1em 0.1em 0.1em black-->
+
+	<table align="center" border="0" cellpadding="0" style="border-spacing:25px; padding:00px;">
+	<tr>
+	<td><img style="width:420px; height:325px;" src="img/logo0.png" alt=""/></td>
+	<td>
+	<table>
+		<tr>
+		<td style="border-right: 1px solid #888888; height:180px;"><b></b></td>
+		
+	</table>	
+	</td>
+	<td>
+	<table border="0" style="border-collapse:collapse;">
+		<tr>
+		<td align="right"><img src="img/caneta2.png" style="whidth:40px;height:40px;"></td>
+		</tr>
+		<tr>
+		<td align="left" style="font-size:63px"><b>FORM-CRON</b></td>
+		</tr>
+		<tr>
+		<td align="left" style="font-size: 25px"> Gestão de Formulários de <br>Acessantes do CRON<br><small><small><small><br></small></small></small></td>
+		</tr>
+	</table>	
+	</td>
+	</tr>
+
+	</table>
+	</div> 
+</div>
+
+</td></tr></table>
+</td></tr></table>
+
+<script>
+var url;
+	function login(){
+			$('#dlg').dialog('open').dialog('setTitle','&nbsp Dados de Login');
+	}
+</script>
+<style>
+.transp2 img {
+	filter: brightness(100%);	
+}
+.transp2 img:hover {
+	filter: drop-shadow(3px 3px 8px grey);
+}
+</style>
+
+<!--Diálogo de Login-->
+	<div id="dlg" class="easyui-dialog" title="Dados de login" data-options="iconCls:'icon-lock'" style="width:470px;height:400px;padding:20px" closed="true">
+		<form action="login.php" method="post">
+			<div class="easyui-panel" style="width:400px;padding:30px 30px">
+			
+			<div style="padding:2px;color:grey;">Login:</div>
+			<div style="margin-bottom:20px;color:grey;">
+				<input prompt="Username" name="usuario" type="text" iconWidth="28" style="width:100%;height:34px;padding:10px;" data-options="prompt:'Username',iconCls:'icon-man',iconWidth:38">
+			</div>
+			
+			<div style="padding:2px; color:grey;">Senha:</div>
+			<div style="margin-bottom:20px;color:grey;">
+				<input prompt="Password" name="senha" type="password" iconWidth="28" style="width:100%;height:34px;padding:10px"  >
+			</div>
+			<div style="margin-bottom:20px; padding:2px">
+			<input type="submit" class="easyui-linkbutton" value="Login" style="padding:5px 0px;width:100%;"/>
+			</div>
+			</div>
+			
+		</form>
+		<br><div style="color:grey">Senha inicial = chesf</div>
+	</div>
+<script>
+var url;
+	function login(){
+			$('#dlg').dialog('open').dialog('setTitle','&nbsp Dados de Login');
+	}
+</script>
+
+
+<!--Sistema de mensagens de erro-->	
+<?php
+
+ if (empty($_GET['a'])) {
+}
+else{	
+$e = mysql_real_escape_string($_GET['a']);
+
+switch ($e) {
+	case 1:
+	$msg = "Formulário vazio!";
+	break;
+	
+	case 2:
+	$msg = "Login incorreto!";
+	break;
+	
+	case 3:
+	$msg = "Refaça o Login!";
+	break;
+
+	default:
+	echo "teste";
+}
+
+if ($e != 0) {	
+echo "<script>$.messager.alert('Mensagem','$msg','warning')</script>";
+
+}
+}
+
+
+
+?>	
+
+<!--Fim sistema de mensagens de erro-->	
+
+
+</div>
+</body>
+</html>
+ <style>
+.container {
+width: 100vw;
+height: 90vh;
+**background: #6C7A89;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center
+}
+.box {
+width: 800px;
+height: 400px;
+**background: #fff;
+}
+body {
+margin: 0px;
+}
+
+.transp img {
+	filter: brightness(100%);	
+}
+.transp img:hover {
+	filter: brightness(105%);
+}
+</style>
+<?php include "DLG_listadetransmissao.php";?>
