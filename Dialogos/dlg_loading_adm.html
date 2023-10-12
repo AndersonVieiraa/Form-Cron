@@ -1,0 +1,17 @@
+<!--Início loading-->	
+<div id="loading" style="display: block; width:100%;height:100%; padding-top:0px; background: white; margin-top:0px; margin-left:0px; position:absolute; z-index:2;">
+	<table border="0" align="center" valign="center" style="width:100%;height:90%; table-layout:fixed;margin-top:50px;">
+		<tr><td align="center" valign="center">
+		<img src="https:img/loading02.gif" style="width:250px;height:200px;" /><br><font size="3" color='grey'>Processando...</font>
+		</td></tr> 
+	</table>
+</div>
+<script>
+var i = setInterval(function () {
+    clearInterval(i);
+    // O código desejado é apenas isto:
+    document.getElementById("loading").style.display = "none";
+	document.getElementById("conteudo").style.display = "inline";
+}, 3000);
+</script>
+<!--Fim loading-->
